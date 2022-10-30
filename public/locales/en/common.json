@@ -1,0 +1,12 @@
+{
+	"header": {
+		"locale": "Languages",
+		"locales": {
+			"pt-BR": "Português - Brazil",
+			"en": "English - International"
+		}
+	},
+	"index": {
+		"description": "Hello, my name is <span>Pedro Henrique</span>, this website was created with the intention of publicizing my projects, my skills and putting my programming skills into practice."
+	}
+}
