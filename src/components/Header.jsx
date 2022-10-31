@@ -28,9 +28,9 @@ export const Header = () => {
 					<Icon as={FaLanguage} w={10} h={10} />
 				</MenuButton>
 				<MenuList rounded='0.3rem' transform='none !important' transition='all 0.2s ease !important' boxShadow='none' borderColor='border' bg='blue.midnight'>
-					<MenuOptionGroup defaultValue={locale} title={t('header.locale')} type='radio'>
+					<MenuOptionGroup color='whiteAlpha.600' defaultValue={locale} title={t('header.locale')} type='radio'>
 						{locales.map((code, index) => (
-							<MenuItemOption key={index} value={code} onClick={() => router.push({ pathname, query }, asPath, { locale: code })} _focus={{ bg: 'none' }} _hover={{ bg: 'whiteAlpha.100' }} pointerEvents={code === locale ? 'none' : 'initial'}>
+							<MenuItemOption key={index} value={code} onClick={() => router.push({ pathname, query }, asPath, { locale: code })} _focus={{ bg: 'none' }} _hover={{ bg: 'whiteAlpha.100' }} pointerEvents={code === locale ? 'none' : 'initial'} color={code === locale ? 'whiteAlpha.700' : 'initial'}>
 								{t(`header.locales.${code}`)}
 							</MenuItemOption>
 						))}

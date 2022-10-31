@@ -2,7 +2,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation, Trans } from 'next-i18next';
 
 // Pages: Styles
-import { chakra, keyframes } from '@chakra-ui/react';
+import { chakra, keyframes, SimpleGrid } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { GridTemplate } from '../components/gridTemplate';
 
@@ -29,7 +29,7 @@ const ArrowScrollDown = keyframes`
 `
 
 // Pages: Home (/)
-const Home = () => {
+const Home = ({ github }) => {
 	const { t } = useTranslation();
 
 	const planet = `${PlanetAnimation} 240s linear infinite`;
@@ -77,7 +77,7 @@ const Home = () => {
 								</clipPath>
 							</defs>
 						</chakra.svg>
-						<chakra.h1 color='blue.beau' fontFamily='Russo One' fontWeight='normal' fontSize='3xl'>
+						<chakra.h1 color='blue.beau' fontFamily='Russo One' fontSize='3xl'>
 							Pedrovisk
 						</chakra.h1>
 					</chakra.div>
@@ -87,7 +87,7 @@ const Home = () => {
 				</chakra.div>
 			</chakra.div>
 			<chakra.div my={{ base: 2, lg: 3 }} display='flex' alignItems='center' justifyContent='space-around'>
-				<chakra.svg animation={arrow} w='60px' h='60px' viewBox='0 0 170 170' fill='none' xmlns='http://www.w3.org/2000/svg'>
+				<chakra.svg filter='drop-shadow(0px 0px 3px #BDD4E7)' animation={arrow} w='60px' h='60px' viewBox='0 0 170 170' fill='none' xmlns='http://www.w3.org/2000/svg'>
 					<g clipPath='url(#clip0_95_415)'>
 						<path d='M88.618 84.8286V42.4161H81.118V84.8286H88.618Z' fill='#BDD4E7' />
 						<path d='M45.078 50.3813C45.4131 50.0447 45.809 49.7747 46.2448 49.5858C46.8524 49.3246 47.5183 49.2287 48.1749 49.3079C48.8315 49.387 49.4555 49.6385 49.9836 50.0366L71.1968 65.9465L66.636 71.9923L50.673 60.0068L49.0025 75.519L68.9429 95.4594C69.2939 95.8063 69.5729 96.2192 69.7641 96.6742C69.9552 97.1292 70.0546 97.6175 70.0566 98.111L70.0566 119.695C70.0415 124.128 70.9055 128.519 72.5987 132.616C74.2919 136.712 76.7805 140.432 79.9207 143.56L84.8528 148.492L89.7849 143.56C92.9251 140.432 95.4137 136.712 97.1069 132.616C98.8001 128.519 99.6641 124.128 99.649 119.695L99.649 98.111C99.651 97.6175 99.7504 97.1292 99.9415 96.6742C100.133 96.2192 100.412 95.8063 100.763 95.4594L120.703 75.519L118.98 59.9538L103.017 71.9392L98.4558 65.8935L119.669 49.9836C120.197 49.5854 120.821 49.334 121.478 49.2548C122.134 49.1757 122.8 49.2716 123.408 49.5328C124.021 49.7949 124.552 50.2156 124.949 50.7516C125.345 51.2876 125.591 51.9195 125.662 52.5822L128.313 76.447C128.386 77.0087 128.331 77.5796 128.152 78.1169C127.973 78.6543 127.675 79.144 127.279 79.5495L107.153 99.6755L107.18 119.695C107.195 125.116 106.134 130.485 104.058 135.492C101.983 140.499 98.9337 145.044 95.0882 148.864L90.1561 153.796C88.7496 155.202 86.8419 155.992 84.8528 155.992C82.8637 155.992 80.956 155.202 79.5495 153.796L74.6174 148.864C70.7719 145.044 67.7229 140.499 65.6473 135.492C63.5717 130.485 62.5107 125.116 62.5259 119.695L62.5524 99.6755L42.4264 79.5495C42.0299 79.1494 41.7287 78.6651 41.5451 78.1326C41.3615 77.6 41.3002 77.033 41.3657 76.4736L44.0174 52.6087C44.1096 51.7679 44.4834 50.9829 45.078 50.3813Z' fill='#BDD4E7' />
@@ -99,18 +99,60 @@ const Home = () => {
 					</defs>
 				</chakra.svg>
 			</chakra.div>
-			<chakra.div>
-				asdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas dasdkasdkaskdkaskdaskdksak dkas d
+			<chakra.div mb={{ base: 5, lg: 10 }}>
+				<chakra.h1 color='blue.beau' fontFamily='Russo One' fontSize='xl' mb={2}>
+					Projects
+				</chakra.h1>
+				<SimpleGrid columns={{ base: 1, lg: 3 }} spacing={{ base: 3, lg: 5 }}>
+					{github.map(({ id, name, description, created_at, updated_at, html_url }) => (
+						<chakra.a key={id} href={html_url} target='_blank'>
+							<chakra.div p={3} border='1px solid' borderColor='border' rounded='0.3rem'>
+								<chakra.div display='flex' justifyContent='space-between' p={2} fontWeight='bold'>
+									<chakra.h2 fontSize='lg' color='whiteAlpha.700'>
+										{name}
+									</chakra.h2>
+									<chakra.span fontSize='sm' color='whiteAlpha.600' >
+										{new Date(created_at).toLocaleDateString(t('locale'), {
+											day: 'numeric',
+											month: 'numeric',
+											year: 'numeric',
+										})}
+									</chakra.span>
+								</chakra.div>
+								<chakra.div p={3} fontWeight='normal'>
+									<chakra.p fontSize='md' color='whiteAlpha.600'>
+										{description}
+									</chakra.p>
+								</chakra.div>
+								<chakra.div p={2}>
+									<chakra.p fontSize='sm' color='whiteAlpha.700'>
+										{t('index.github.lastUpdate')}
+										{new Date(updated_at).toLocaleDateString(t('locale'), {
+											day: 'numeric',
+											month: 'numeric',
+											year: 'numeric',
+										})}
+									</chakra.p>
+								</chakra.div>
+							</chakra.div>
+						</chakra.a>
+					))}
+				</SimpleGrid>
 			</chakra.div>
 		</GridTemplate>
 	)
 }
 
 // Pages: getStaticProps
-export const getStaticProps = async ({ locale }) => ({
-	props: {
-		...await serverSideTranslations(locale),
+export async function getStaticProps({ locale }) {
+	const res = await fetch('https://api.github.com/users/Pedrvisk/repos').then(async (res) => await res.json());
+
+	return {
+		props: {
+			...await serverSideTranslations(locale),
+			github: res
+		}
 	}
-});
+};
 
 export default Home;

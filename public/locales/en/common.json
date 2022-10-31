@@ -1,4 +1,5 @@
 {
+	"locale": "en-US",
 	"header": {
 		"locale": "Languages",
 		"locales": {
@@ -7,6 +8,9 @@
 		}
 	},
 	"index": {
-		"description": "Hello, my name is <span>Pedro Henrique</span>, this website was created with the intention of publicizing my projects, my skills and putting my programming skills into practice."
+		"description": "Hello, my name is <span>Pedro Henrique</span>, this website was created with the intention of publicizing my projects, my skills and putting my programming skills into practice.",
+		"github": {
+			"lastUpdate": "Last updated "
+		}
 	}
 }
