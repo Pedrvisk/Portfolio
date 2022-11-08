@@ -9,6 +9,7 @@
 	},
 	"index": {
 		"description": "Olá, meu nome é <span>Pedro Henrique</span>, este website foi criado com a intenção de divulgar os meus projetos, as minhas competências e de pôr em prática as minhas capacidades de programação.",
+		"projects": "Projetos",
 		"github": {
 			"lastUpdate": "Última atualização "
 		}
