@@ -81,7 +81,7 @@ const Home = ({ github }) => {
 
 // Pages: getStaticProps
 export async function getStaticProps({ locale }) {
-	let res = await fetch('https://api.github.com/users/Pedasdasdsadrvisk/repos')
+	const res = await fetch('https://api.github.com/users/Pedrvisk/repos')
 		.then(async (res) => await res.json());
 
 	return {
