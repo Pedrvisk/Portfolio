@@ -12,6 +12,17 @@
 		"projects": "Projects",
 		"github": {
 			"lastUpdate": "Last updated "
+		},
+		"wakapi": {
+			"metrics": "Metrics",
+			"languages": "Languages",
+			"systems": "Operating Systems",
+			"editors": "Editors"
 		}
+	},
+	"error": {
+		"client": "Oops, an error occurred on page, press the button to resume.",
+		"server": "Oops, an error occurred on server, press the button to resume.",
+		"back": "Let's go!"
 	}
 }

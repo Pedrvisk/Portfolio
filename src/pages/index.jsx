@@ -2,7 +2,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation, Trans } from 'next-i18next';
 
 // Pages: Styles
-import { GridTemplate } from '../components/gridTemplate';
+import { Grid } from '../components/Grid';
 import { chakra, keyframes } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 
@@ -13,7 +13,8 @@ import { Rocket } from '../assets/Rocket';
 import { Moon } from '../assets/Moon';
 
 // Pages: Components
-import { Cards } from '../components/Cards';
+import { Projects } from '../components/Projects';
+import { Metrics } from '../components/Metrics';
 
 // Pages: Planet Animation
 const PlanetAnimation = keyframes`
@@ -38,7 +39,7 @@ const ArrowScrollDown = keyframes`
 `
 
 // Pages: Home (/)
-const Home = ({ github }) => {
+const Home = ({ github, wakapi }) => {
 	const { t } = useTranslation();
 
 	const planet = `${PlanetAnimation} 240s linear infinite`;
@@ -46,7 +47,7 @@ const Home = ({ github }) => {
 	const arrow = `${ArrowScrollDown} 1s ease-in-out infinite`
 
 	return (
-		<GridTemplate>
+		<Grid>
 			<chakra.div display={{ base: 'block', lg: 'flex' }} justifyContent={{ base: 'center', lg: 'space-evenly' }} textAlign='center' alignItems='center' h={{ base: 'auto', lg: '30rem' }}>
 				<chakra.div display='flex' justifyContent='center' p={16} position='relative'>
 					<Planet as={motion.svg} animation={planet} filter='drop-shadow(0px 0px 8px #BDD4E7)' height={{ base: '200px', lg: '250px' }} width={{ base: '200px', lg: '250px' }} />
@@ -70,24 +71,34 @@ const Home = ({ github }) => {
 				<Rocket filter='drop-shadow(0px 0px 3px #BDD4E7)' animation={arrow} w='60px' h='60px' />
 			</chakra.div>
 			<chakra.div mb={{ base: 5, lg: 10 }}>
-				<chakra.h1 color='blue.beau' fontFamily='Russo One' fontSize='xl' mb={2}>
+				<chakra.h2 color='blue.beau' fontSize='lg' mb={2} textAlign='center'>
 					{t('index.projects')}
-				</chakra.h1>
-				<Cards data={github} />
+				</chakra.h2>
+				<Projects data={github} />
 			</chakra.div>
-		</GridTemplate>
+			<chakra.div mb={{ base: 5, lg: 10 }}>
+				<Metrics data={wakapi} />
+			</chakra.div>
+		</Grid>
 	)
 }
 
 // Pages: getStaticProps
 export async function getStaticProps({ locale }) {
-	const res = await fetch('https://api.github.com/users/Pedrvisk/repos')
-		.then(async (res) => await res.json());
+	const resGithub = await fetch('https://api.github.com/users/Pedrvisk/repos')
+		.then(async (res) => await res.json()).catch(() => false);
+
+	const resWakapi = await fetch('https://wakapi.dev/api/summary?interval=all_time', {
+		headers: {
+			Authorization: `Basic ${Buffer.from(process.env.WAKAPI_KEY).toString('base64')}`
+		}
+	}).then(async (res) => await res.json()).catch(() => false);
 
 	return {
 		props: {
 			...await serverSideTranslations(locale),
-			github: res?.message ? false : res
+			github: resGithub?.message ? false : resGithub,
+			wakapi: resWakapi?.user_id ? resWakapi : false
 		}
 	}
 };

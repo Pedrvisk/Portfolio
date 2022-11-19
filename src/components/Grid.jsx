@@ -6,8 +6,8 @@ import { Footer } from './Footer';
 // Components: Styles
 import { chakra } from '@chakra-ui/react';
 
-// Components: GridTenplate
-export const GridTemplate = ({ children }) => {
+// Components: Grid
+export const Grid = ({ children }) => {
 	return (
 		<>
 			<chakra.header userSelect='none' mt={{ base: 3, lg: 6 }} display='flex' alignItems='center' justifyContent='space-between' w='100%' maxW='1280px' marginInlineEnd='auto' marginInlineStart='auto' paddingInlineStart={4} paddingInlineEnd={4}>
