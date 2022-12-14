@@ -9,6 +9,7 @@
 </h1>
 <p align='center'>
 	• In the <strong>NextJS</strong> project, a website was created to serve as a <strong>resume</strong>, and to test my <strong>programming skills</strong> and <strong>abilities</strong>.
+  <img src='https://img.shields.io/badge/Website-black?style=for-the-badge&logo=next.js&logoColor=white' />
 </p>
 <br />
 <!--/Heading-->
