@@ -99,7 +99,8 @@ export async function getStaticProps({ locale }) {
 			...await serverSideTranslations(locale),
 			github: resGithub?.message ? false : resGithub,
 			wakapi: resWakapi?.user_id ? resWakapi : false
-		}
+		},
+		revalidate: 1440 // 1 day
 	}
 };
 
