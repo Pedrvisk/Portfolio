@@ -10,10 +10,10 @@
 <p align='center'>
 	• In the <strong>NextJS</strong> project, a website was created to serve as a <strong>resume</strong>, and to test my <strong>programming skills</strong> and <strong>abilities</strong>.
 </p>
-<p align='center>
+<p align='center'>
   <a href='https://pedrovisk.ml/'>
-		<img src='https://img.shields.io/badge/Website-black?style=for-the-badge&logo=next.js&logoColor=white' />
-	</a>
+    <img src='https://img.shields.io/badge/Website-black?style=for-the-badge&logo=next.js&logoColor=white' />
+  </a>
 </p>
 <br />
 <!--/Heading-->
