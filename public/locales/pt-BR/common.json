@@ -1,0 +1,13 @@
+{
+  "loading": "Carregando...",
+  "header": {
+    "nav": {
+      "link": ["Início", "Projetos", "Sobre mim"]
+    },
+    "about": "Olá, meu nome é Pedro Henrique sou um desenvolvedor FullStack, procuro aprimorar minhas habilidades de programação e adquirir mais conhecimento",
+    "error": "Oops! We can't seem to find the page you're looking for."
+  },
+  "projects": {
+    "title": "Projetos"
+  }
+}

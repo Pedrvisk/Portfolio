@@ -1,0 +1,12 @@
+{
+  "loading": "Loading...",
+  "header": {
+    "nav": {
+      "link": ["Home", "Projects", "About me"]
+    },
+    "about": "Hello, my name is Pedro Henrique and I am a FullStack programmer, I am looking to improve my programming skills and acquire more knowledge"
+  },
+  "projects": {
+    "title": "Projects"
+  }
+}
