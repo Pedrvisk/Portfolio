@@ -18,13 +18,21 @@
 <br />
 <!--/Heading-->
 
+### **`.env ` file exemple**
+```
+WEATHER_KEY= Get API Key in https://www.weatherapi.com/
+LASTFM_KEY= Get API Key in https://www.last.fm/pt/api
+WAKAPI_KEY= Get API Key in https://wakapi.dev/
+```
+
 <!--Section-->
+<br />
 <p align='center'>
   ⚙️ Languages and tools used in the project
 </p>
 <p align='center'>
   <img src='https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white' />&nbsp;&nbsp;
-  <img src='https://img.shields.io/badge/chakra-%234ED1C5?style=for-the-badge&logo=chakraui&logoColor=white' />&nbsp;&nbsp;
+  <img src='https://img.shields.io/badge/TailwindCSS-%234ED1C5?style=for-the-badge&logo=tailwindcss&logoColor=white' />&nbsp;&nbsp;
   <img src='https://img.shields.io/badge/i18next-98fb98?style=for-the-badge&logo=i18next&logoColor=white' />&nbsp;&nbsp;
   <img src='https://img.shields.io/badge/Framer-black?style=for-the-badge&logo=framer&logoColor=blue' />&nbsp;&nbsp;
   <img src='https://img.shields.io/badge/fontsource-f49700?style=for-the-badge&logo=google&logoColor=white' />&nbsp;&nbsp;
