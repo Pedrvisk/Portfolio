@@ -15,10 +15,9 @@
     <img src='https://img.shields.io/badge/Website-black?style=for-the-badge&logo=next.js&logoColor=white' />
   </a>
 </p>
-<br />
 <!--/Heading-->
 
-### **`.env ` file exemple**
+#### **`.env ` file exemple**
 ```
 WEATHER_KEY= Get API Key in https://www.weatherapi.com/
 LASTFM_KEY= Get API Key in https://www.last.fm/pt/api

@@ -4,7 +4,7 @@ const ErrorClient = () => {
   return (
     <div className='max-h-52 p-5 text-center flex flex-col items-center justify-center'>
       <h1 className='text-5xl mb-4 font-semibold text-red-500'>404</h1>
-      <p>Oops! We can't seem to find the page you're looking for.</p>
+      <p>Oops! We cant seem to find the page youre looking for.</p>
     </div>
   );
 };
