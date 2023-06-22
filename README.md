@@ -22,6 +22,7 @@
 WEATHER_KEY= Get API Key in https://www.weatherapi.com/
 LASTFM_KEY= Get API Key in https://www.last.fm/pt/api
 WAKAPI_KEY= Get API Key in https://wakapi.dev/
+WEBHOOK_URL= Discord Webhook URL
 ```
 
 <!--Section-->
@@ -34,8 +35,7 @@ WAKAPI_KEY= Get API Key in https://wakapi.dev/
   <img src='https://img.shields.io/badge/TailwindCSS-%234ED1C5?style=for-the-badge&logo=tailwindcss&logoColor=white' />&nbsp;&nbsp;
   <img src='https://img.shields.io/badge/i18next-98fb98?style=for-the-badge&logo=i18next&logoColor=white' />&nbsp;&nbsp;
   <img src='https://img.shields.io/badge/Framer-black?style=for-the-badge&logo=framer&logoColor=blue' />&nbsp;&nbsp;
-  <img src='https://img.shields.io/badge/fontsource-f49700?style=for-the-badge&logo=google&logoColor=white' />&nbsp;&nbsp;
-  <img src='https://img.shields.io/badge/Figma-4B275F?style=for-the-badge&logo=figma&logoColor=white' />
+  <img src='https://img.shields.io/badge/daisyui-f49700?style=for-the-badge&logo=daisyui&logoColor=white' />
 </p>
 <br/>
 <!--/Section-->
