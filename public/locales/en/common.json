@@ -2,11 +2,42 @@
   "loading": "Loading...",
   "header": {
     "nav": {
-      "link": ["Home", "Projects", "About me"]
+      "link": ["Home", "Projects", "Contact"]
     },
-    "about": "Hello, my name is Pedro Henrique and I am a FullStack programmer, I am looking to improve my programming skills and acquire more knowledge"
+    "about": "Hi, my name is Pedro Henrique and I'm a Full-Stack programmer looking to improve my programming skills and acquire more knowledge!"
   },
-  "projects": {
-    "title": "Projects"
+  "home": {
+    "spotify": {
+      "listening": {
+        "yes": "Listening to Spotify",
+        "no": "Not Listening to Spotify"
+      },
+      "artist": "by",
+      "album": "on"
+    },
+    "miuky": {
+      "description": "Miuky is a Discord bot developed using tiny-discord, with commands for utilities, entertainment, moderation, and more!"
+    }
+  },
+  "project": {
+    "title": "Projects",
+    "title2": "Metrics"
+  },
+  "contact": {
+    "title": "Contact",
+    "form": {
+      "email": {
+        "invalid": "Invalid e-mail, please try again!"
+      },
+      "message": {
+        "title": "Message",
+        "placeholder": "Type a message to be sent!"
+      },
+      "send": "Send",
+      "seconds": "Seconds"
+    },
+    "links": {
+      "description": ["Join the Discord", "My Projects", "support@pedrovisk.ml"]
+    }
   }
 }

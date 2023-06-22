@@ -10,7 +10,7 @@ const nextConfig = {
     return [
       {
         source: '/discord',
-        destination: 'https://discord.gg/sr2JGq6m9Y',
+        destination: 'https://discord.com/users/216662585737478144',
         permanent: true,
       },
       {
@@ -22,6 +22,16 @@ const nextConfig = {
         source: '/spotify',
         destination:
           'https://open.spotify.com/user/novoshigod?si=dc5e4661f79a4be',
+        permanent: true,
+      },
+      {
+        source: '/lastfm',
+        destination: 'https://www.last.fm/pt/user/Pedrov1sk',
+        permanent: true,
+      },
+      {
+        source: '/wakapi',
+        destination: 'https://wakapi.dev/',
         permanent: true,
       },
     ];

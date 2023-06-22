@@ -2,12 +2,47 @@
   "loading": "Carregando...",
   "header": {
     "nav": {
-      "link": ["Início", "Projetos", "Sobre mim"]
+      "link": ["Início", "Projetos", "Contato"]
     },
-    "about": "Olá, meu nome é Pedro Henrique sou um desenvolvedor FullStack, procuro aprimorar minhas habilidades de programação e adquirir mais conhecimento",
+    "about": "Olá, o meu nome é Pedro Henrique sou um programador Full-Stack à procura de melhorar as minhas capacidades de programação e adquirir mais conhecimentos!",
     "error": "Oops! We can't seem to find the page you're looking for."
   },
-  "projects": {
-    "title": "Projetos"
+  "home": {
+    "spotify": {
+      "listening": {
+        "yes": "Ouvindo Spotify",
+        "no": "Não Ouvindo Spotify"
+      },
+      "artist": "por",
+      "album": "do álbum"
+    },
+    "miuky": {
+      "description": "Miuky é um bot de Discord desenvolvido usando tiny-discord, com comandos de utilidades, entretenimento, moderação, entre outros!"
+    }
+  },
+  "project": {
+    "title": "Projetos",
+    "title2": "Métricas"
+  },
+  "contact": {
+    "title": "Contato",
+    "form": {
+      "email": {
+        "invalid": "E-mail inválido, tente novamente!"
+      },
+      "message": {
+        "title": "Mensagem",
+        "placeholder": "Digite uma mensagem para ser enviada!"
+      },
+      "send": "Enviar",
+      "seconds": "Segundos"
+    },
+    "links": {
+      "description": [
+        "Entre no Discord",
+        "Meus Projetos",
+        "support@pedrovisk.ml"
+      ]
+    }
   }
 }

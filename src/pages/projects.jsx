@@ -1,10 +1,12 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import GithubProjects from '@/components/Projects';
+import Metrics from '@/components/Metrics';
 
 const Projects = ({ gitProjects, metrics }) => {
   return (
     <>
+      <Metrics data={metrics} />
       <GithubProjects projects={gitProjects} />
     </>
   );
@@ -31,8 +33,30 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
-      gitProjects: gitProjects?.message ? false : gitProjects,
-      metrics: wakapiMetrics?.user_id ? wakapiMetrics : false,
+      gitProjects: gitProjects?.message
+        ? false
+        : gitProjects.map((project) => {
+            return {
+              id: project.id,
+              html_url: project.html_url,
+              language: project.language,
+              description: project.description,
+              owner: {
+                avatar_url: project.owner.avatar_url,
+                login: project.owner.login,
+              },
+              name: project.name,
+              pushed_at: project.pushed_at,
+            };
+          }),
+      metrics: wakapiMetrics?.user_id
+        ? {
+            projects: wakapiMetrics.labels,
+            languages: wakapiMetrics.languages.filter(
+              (value) => !['INI', 'unknown'].includes(value.key)
+            ),
+          }
+        : false,
     },
     revalidate: 1440, // 1 day
   };

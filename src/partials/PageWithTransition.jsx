@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import { Header } from './Header';
-import { Footer } from './Footer';
 
 export const PageWithTransition = ({ children, user }) => {
   const { asPath } = useRouter();
@@ -35,6 +35,17 @@ export const PageWithTransition = ({ children, user }) => {
 
   return (
     <>
+      <div
+        id='__nextbackground'
+        className='fixed z-0 h-screen w-full bg-black opacity-80'
+      >
+        <Image
+          src='/img/background.gif'
+          alt='Pedrovisk Website Background'
+          fill
+          className='object-cover object-center opacity-30'
+        />
+      </div>
       <div className='relative mx-auto max-w-6xl px-2 py-2 md:py-14 sm:px-4 md:px-6'>
         <Header user={user} />
         <div className='overflow-hidden my-2 md:my-6'>

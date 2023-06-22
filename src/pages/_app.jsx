@@ -20,12 +20,12 @@ const App = ({ Component, pageProps }) => {
       if (loader) {
         const loaderLogo = document.getElementById('__nextlogo');
         if (loaderLogo) {
-          setTimeout(() => (loaderLogo.style.opacity = 0), 4000);
+          setTimeout(() => (loaderLogo.style.opacity = 0), 2900);
         }
 
-        setTimeout(() => (loader.style.height = 0), 4000);
-        setTimeout(() => (loader.style.opacity = 0), 5000);
-        setTimeout(() => (loader.style.display = 'none'), 6000);
+        // setTimeout(() => (loader.style.height = 0), 4000);
+        setTimeout(() => (loader.style.opacity = 0), 3000); // 5000
+        setTimeout(() => (loader.style.display = 'none'), 4000); // 6000
       }
     }
   }, []);

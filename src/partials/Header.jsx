@@ -2,8 +2,12 @@ import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
+import { format } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import pt from 'date-fns/locale/pt-BR';
+import en from 'date-fns/locale/en-US';
 
 import { LanguageTransition } from './PageWithTransition';
 import {
@@ -16,7 +20,7 @@ import { Logo } from '@/assets/Logo';
 import { Language } from '@/assets/Language';
 
 export const Header = ({ user }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [time, setTime] = useState('');
   const [weather, setWeather] = useState();
   const router = useRouter();
@@ -64,12 +68,13 @@ export const Header = ({ user }) => {
               }
               width={100}
               height={100}
+              quality={100}
               alt='Discord Avatar of Pedrovisk'
-              className='hover:origin-center hover:scale-[1.1] transition-all rounded-full border-white/5 border-[2px]'
+              className='rounded-full border-white/5 border-[2px]'
             />
             <div className='w-full'>
               <Link
-                href='https://discord.com/users/216662585737478144'
+                href='/discord'
                 target='_blank'
                 className='flex items-center gap-2 justify-center md:justify-start group'
               >
@@ -106,7 +111,7 @@ export const Header = ({ user }) => {
             },
             {
               label: t('header.nav.link.2'),
-              href: '/about',
+              href: '/contact',
             },
           ].map((value, index) => (
             <Link
@@ -184,13 +189,22 @@ export const Header = ({ user }) => {
           </div>
         </div>
         <div className='col-span-12 md:col-span-3 flex grid-cols-1 flex-col justify-between h-full bg-[#191919]/20 border-[0.5px] border-gray-900/20 backdrop-saturate-150 rounded-md backdrop-blur'>
-          <div
-            className={`w-full h-32 md:h-full bg-[url("/img/map.png")] rounded-md bg-center bg-no-repeat bg-cover`}
-          >
+          <div className='w-full h-32 md:h-full rounded-md'>
+            <Image
+              quality={100}
+              src='/img/map.png'
+              alt='Pedrovisk Map Image'
+              fill
+              className='z-[-1] rounded-md object-cover object-center'
+            />
             {weather ? (
               <div className='flex flex-col h-full font-medium text-xs text-white/50 bg-[#191919]/40 rounded-md border-gray-900/20 border-[0.5px] p-1.5'>
                 <span className='h-full text-end text-[9px]'>
-                  {weather?.last_updated.slice(0, 10).replace(/-/g, '/')}
+                  <LanguageTransition>
+                    {format(new Date(weather.last_updated), 'PPP', {
+                      locale: i18n.language === 'pt-BR' ? pt : en,
+                    })}
+                  </LanguageTransition>
                 </span>
                 <span className='text-start'>{weather?.temp_c}°C</span>
               </div>

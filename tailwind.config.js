@@ -82,5 +82,6 @@ module.exports = {
     rtl: false,
     prefix: '',
     darkTheme: 'dark',
+    logs: true
   },
 };

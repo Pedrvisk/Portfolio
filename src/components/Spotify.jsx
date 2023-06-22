@@ -1,7 +1,9 @@
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { BsSpotify } from 'react-icons/bs';
+import { LanguageTransition } from '@/partials/PageWithTransition';
 
 let startedTimestamp = 0;
 let endTimestamp = 0;
@@ -14,6 +16,7 @@ function getMinuteAndSeconds(date) {
 }
 
 const Spotify = ({ user }) => {
+  const { t } = useTranslation();
   const [elapsed, setElapsed] = useState();
 
   const duration = user?.spotify?.timestamps
@@ -53,7 +56,7 @@ const Spotify = ({ user }) => {
         <h2
           className={`${
             user?.spotify ? 'text-slate-300' : 'text-slate-300/40'
-          } flex items-center justify-between mb-2 text-center text-medium font-bold sm:text-xl md:text-left`}
+          } flex items-center justify-between mb-2 text-center font-bold sm:text-xl md:text-left`}
         >
           <Link
             href='/spotify'
@@ -61,9 +64,11 @@ const Spotify = ({ user }) => {
             rel='noopener noreferrer'
             className='hover:text-slate-300/60 transition-colors'
           >
-            {user?.spotify
-              ? 'Listening to Spotify'
-              : 'Not Listening to Spotify'}
+            <LanguageTransition>
+              {user?.spotify
+                ? t('home.spotify.listening.yes')
+                : t('home.spotify.listening.no')}
+            </LanguageTransition>
           </Link>
           <BsSpotify
             className={`w-6 h-6 fill-slate-300 ${
@@ -75,7 +80,7 @@ const Spotify = ({ user }) => {
           {user?.spotify ? (
             <>
               <Image
-                quality={50}
+                quality={100}
                 src={user?.spotify?.album_art_url || ''}
                 height={94}
                 width={94}
@@ -83,14 +88,20 @@ const Spotify = ({ user }) => {
                 alt='album cover'
               />
               <div className='md:ml-2 col-span-9 flex flex-col justify-center'>
-                <h2 className='truncate text-lg md:text-xl font-semibold leading-tight text-slate-300/90'>
+                <h2 className='truncate text-lg font-semibold leading-tight text-slate-300/90'>
                   {user?.spotify?.song}
                 </h2>
                 <h4 className='truncate text-xs leading-tight text-slate-300/80'>
-                  by {user?.spotify?.artist}
+                  <LanguageTransition>
+                    {t('home.spotify.artist')}
+                  </LanguageTransition>{' '}
+                  {user?.spotify?.artist}
                 </h4>
                 <h4 className='truncate text-xs md:text-xs leading-tight text-slate-300/80'>
-                  on {user?.spotify?.album}
+                  <LanguageTransition>
+                    {t('home.spotify.album')}
+                  </LanguageTransition>{' '}
+                  {user?.spotify?.album}
                 </h4>
               </div>
             </>
