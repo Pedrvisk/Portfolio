@@ -123,7 +123,7 @@ const Contact = () => {
                   },
                 })}
                 placeholder='example@gmail.com'
-                className='input input-bordered bg-[#191919]/40 placeholder:text-sm w-full'
+                className='input border-none input-bordered bg-[#191919]/40 placeholder:text-sm w-full'
               />
               {errors.email?.type === 'pattern' ? (
                 <label className='label absolute top-[95%]'>
@@ -153,13 +153,13 @@ const Contact = () => {
                     value: true,
                   },
                 })}
-                className='textarea bg-[#191919]/40 textarea-bordered h-24 w-full'
+                className='textarea border-none bg-[#191919]/40 textarea-bordered h-24 w-full'
                 placeholder={t('contact.form.message.placeholder')}
               />
             </div>
             <div className='flex items-center justify-end'>
               <button
-                className='btn w-full bg-slate-300/5 flex items-center justify-center gap-2 hover:bg-white/5'
+                className='btn w-full text-slate-300/80 border-none bg-slate-300/5 flex items-center justify-center gap-2 hover:bg-white/5'
                 type='submit'
                 disabled={formLoading}
               >
@@ -173,7 +173,7 @@ const Contact = () => {
                   </>
                 ) : (
                   <>
-                    <IoSend className='w-4 h-4 fill-slate-300' />
+                    <IoSend className='w-4 h-4 fill-slate-300/80' />
                     <LanguageTransition>
                       {t('contact.form.send')}
                     </LanguageTransition>

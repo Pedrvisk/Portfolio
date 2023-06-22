@@ -27,7 +27,7 @@ const LastFM = ({ tracks }) => {
                 index === 1 ? 'my-1' : ''
               }`}
             >
-              <span className='badge leading-tight text-xs font-bold text-slate-300/80 absolute right-0 top-0 bg-slate-300/20 rounded-tl-none rounded-br-none rounded-tr-md rounded-bl-md'>
+              <span className='badge leading-tight text-xs font-bold text-slate-300/80 absolute right-0 top-0 bg-slate-300/20 border-none rounded-tl-none rounded-br-none rounded-tr-md rounded-bl-md'>
                 {song['@attr'].rank}
               </span>
               <h2 className='trucante leading-tight text-slate-300/80 text-xs md:text-sm font-medium'>

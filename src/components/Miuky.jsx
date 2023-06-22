@@ -12,7 +12,7 @@ const Miuky = () => {
   return (
     <div className='group p-2 md:p-5 col-span-12 md:col-span-6 bg-[#191919]/20 border-[0.5px] border-gray-900/20 backdrop-saturate-150 rounded-md backdrop-blur'>
       <h2 className='flex items-center justify-between text-slate-300 text-center font-bold sm:text-xl md:text-left'>
-        <div className='p-2 text-[10px] badge font-black gap-1 bg-slate-300/20 rounded-md'>
+        <div className='p-2 text-[10px] badge font-black text-slate-300 gap-1 bg-slate-300/20 rounded-md'>
           <BsCheck className='w-4 h-4 fill-slate-300' />
           BOT
         </div>

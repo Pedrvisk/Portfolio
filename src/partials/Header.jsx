@@ -154,7 +154,7 @@ export const Header = ({ user }) => {
             <div className='dropdown dropdown-end'>
               <label
                 tabIndex={0}
-                className='backdrop-blur backdrop-saturate-150 indicator btn bg-[#191919]/90 transitions-colors hover:bg-white/10 shadow-inner rounded-r-[4px] rounded-l-none'
+                className='backdrop-blur backdrop-saturate-150 indicator btn bg-[#191919]/90 transitions-colors hover:bg-white/10 shadow-inner border-none rounded-r-[4px] rounded-l-none'
               >
                 <span className='indicator-item indicator-middle indicator-start badge bg-transparent border-none'>
                   <LanguageTransition>
