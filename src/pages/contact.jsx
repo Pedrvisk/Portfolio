@@ -3,14 +3,16 @@ import { LanguageTransition } from '@/partials/PageWithTransition';
 import { IoIosContact } from 'react-icons/io';
 import { useTranslation } from 'next-i18next';
 import { SiDiscord, SiGithub, SiMinutemailer } from 'react-icons/si';
-import { HiOutlineMail } from 'react-icons/hi';
+import { MdOutlineMail } from 'react-icons/md';
 import { BiMessageDetail } from 'react-icons/bi';
 import { IoSend } from 'react-icons/io5';
 import { useForm } from 'react-hook-form';
+import { useReducedMotion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 const Contact = () => {
+  const prefersReducedMotion = useReducedMotion();
   const { t } = useTranslation();
   const [formLoading, setFormLoading] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
@@ -76,7 +78,11 @@ const Contact = () => {
               href={value.href}
               target='_blank'
               rel='noopener noreferrer'
-              className='w-full flex-auto flex-col flex items-center gap-2 p-2 md:p-5 col-span-12 transition-colors hover:bg-white/5 bg-[#191919]/20 border-[0.5px] border-gray-900/20 backdrop-saturate-150 md:col-span-9 rounded-md backdrop-blur'
+              className={`w-full flex-auto flex-col flex items-center gap-2 p-2 md:p-5 col-span-12 hover:bg-white/5 bg-[#191919]/20 border-[0.5px] border-gray-900/20 md:col-span-9 rounded-md ${
+                prefersReducedMotion
+                  ? ''
+                  : 'transition-colors backdrop-blur backdrop-saturate-150'
+              }`}
             >
               <h2 className='flex w-full items-center justify-between gap-2 rounded-full text-base leading-tight font-medium'>
                 {value.label}
@@ -90,7 +96,11 @@ const Contact = () => {
             </Link>
           ))}
         </div>
-        <div className='col-span-12 p-2 md:p-5 bg-[#191919]/20 border-[0.5px] border-gray-900/20 backdrop-saturate-150 md:col-span-9 rounded-md backdrop-blur'>
+        <div
+          className={`col-span-12 p-2 md:p-5 bg-[#191919]/20 border-[0.5px] border-gray-900/20 md:col-span-9 rounded-md ${
+            prefersReducedMotion ? '' : 'backdrop-blur backdrop-saturate-150'
+          }`}
+        >
           <h2 className='flex items-center justify-between text-slate-300 mb-2 md:mb-4 text-center font-bold sm:text-xl md:text-left'>
             <LanguageTransition>{t('contact.title')}</LanguageTransition>
             <IoIosContact className='w-6 h-6 fill-slate-300' />
@@ -99,7 +109,7 @@ const Contact = () => {
             onSubmit={handleSubmit(onSubmit)}
             className='space-y-4'
           >
-            <div className='form-control relative w-full'>
+            <div className='form-control w-full'>
               <label className='label'>
                 <span className='label-text leading-tight text-slate-300/80 font-medium text-sm'>
                   E-mail
@@ -108,7 +118,7 @@ const Contact = () => {
                   ) : null}
                 </span>
                 <span className='label-text-alt'>
-                  <HiOutlineMail className='w-4 h-4' />
+                  <MdOutlineMail className='w-4 h-4 fill-slate-300' />
                 </span>
               </label>
               <input
@@ -153,13 +163,17 @@ const Contact = () => {
                     value: true,
                   },
                 })}
-                className='textarea border-none bg-[#191919]/40 textarea-bordered h-24 w-full'
+                className='textarea max-h-24 min-h-24 border-none bg-[#191919]/40 textarea-bordered h-24 w-full'
                 placeholder={t('contact.form.message.placeholder')}
               />
             </div>
             <div className='flex items-center justify-end'>
               <button
-                className='btn w-full text-slate-300/80 border-none bg-slate-300/5 flex items-center justify-center gap-2 hover:bg-white/5'
+                className={`btn w-full text-slate-300/80 disabled:text-slate-300/60 border-none bg-slate-300/5 flex items-center justify-center gap-2 hover:bg-white/5 ${
+                  prefersReducedMotion
+                    ? 'no-animation transition-none animate-none'
+                    : ''
+                }`}
                 type='submit'
                 disabled={formLoading}
               >

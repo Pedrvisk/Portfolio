@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
+import { useReducedMotion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { BsSpotify } from 'react-icons/bs';
@@ -16,6 +17,7 @@ function getMinuteAndSeconds(date) {
 }
 
 const Spotify = ({ user }) => {
+  const prefersReducedMotion = useReducedMotion();
   const { t } = useTranslation();
   const [elapsed, setElapsed] = useState();
 
@@ -51,7 +53,11 @@ const Spotify = ({ user }) => {
   }, [user]);
 
   return (
-    <div className='col-span-12 bg-[#191919]/20 border-[0.5px] p-2 md:p-5 border-gray-900/20 backdrop-saturate-150 md:col-span-6 rounded-md backdrop-blur'>
+    <div
+      className={`col-span-12 bg-[#191919]/20 border-[0.5px] p-2 md:p-5 border-gray-900/20 md:col-span-6 rounded-md ${
+        prefersReducedMotion ? '' : 'backdrop-blur backdrop-saturate-150'
+      }`}
+    >
       <div className='flex w-full flex-col'>
         <h2
           className={`${
@@ -62,7 +68,9 @@ const Spotify = ({ user }) => {
             href='/spotify'
             target='_blank'
             rel='noopener noreferrer'
-            className='hover:text-slate-300/60 transition-colors'
+            className={`hover:text-slate-300/60 ${
+              prefersReducedMotion ? '' : 'transition-colors'
+            }`}
           >
             <LanguageTransition>
               {user?.spotify
@@ -71,8 +79,12 @@ const Spotify = ({ user }) => {
             </LanguageTransition>
           </Link>
           <BsSpotify
-            className={`w-6 h-6 fill-slate-300 ${
-              user?.spotify ? '' : 'animate-pulse'
+            className={`w-6 h-6 ${
+              user?.spotify
+                ? ''
+                : prefersReducedMotion
+                ? 'fill-slate-300/60'
+                : 'fill-slate-300 animate-pulse'
             }`}
           />
         </h2>

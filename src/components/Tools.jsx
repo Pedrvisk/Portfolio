@@ -12,9 +12,12 @@ import {
   SiVisualstudiocode,
 } from 'react-icons/si';
 import { FaGithubAlt } from 'react-icons/fa';
+import { useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 
 const Tools = () => {
+  const prefersReducedMotion = useReducedMotion();
+
   const usedTools = [
     {
       icon: SiExpress,
@@ -74,14 +77,22 @@ const Tools = () => {
   ];
 
   return (
-    <div className='p-2 md:p-5 col-span-12 bg-[#191919]/20 border-[0.5px] border-gray-900/20 backdrop-saturate-150 md:col-span-6 rounded-md backdrop-blur'>
+    <div
+      className={`p-2 md:p-5 col-span-12 bg-[#191919]/20 border-[0.5px] border-gray-900/20 md:col-span-6 rounded-md ${
+        prefersReducedMotion
+          ? 'no-animation transition-none animate-none'
+          : 'backdrop-blur backdrop-saturate-150'
+      }`}
+    >
       <h2 className='flex items-center justify-between mb-2 text-slate-300 text-center font-bold sm:text-xl md:text-left'>
         <FaGithubAlt className='w-6 h-6 fill-slate-300' />
         <Link
           href='/github'
           target='_blank'
           rel='noopener noreferrer'
-          className='hover:text-slate-300/60 transition-colors'
+          className={`hover:text-slate-300/60 ${
+            prefersReducedMotion ? '' : 'transition-colors'
+          }`}
         >
           Github
         </Link>
@@ -91,12 +102,18 @@ const Tools = () => {
           <Link
             href={value.href}
             key={index}
-            className='md:tooltip flex items-center justify-center text-center'
+            className='md:tooltip md:animate-none flex items-center justify-center text-center'
             target='_blank'
             rel='noopener noreferrer'
             data-tip={value.tooltip}
           >
-            <button className='mt-2 bg-transparent hover:origin-center hover:scale-[1.1] transition-all rounded-md border-none shadow-none'>
+            <button
+              className={`mt-2 bg-transparent rounded-md border-none shadow-none ${
+                prefersReducedMotion
+                  ? ''
+                  : 'hover:origin-center hover:scale-[1.1] transition-all'
+              }`}
+            >
               <value.icon className='fill-slate-300/80 w-8 h-8 drop-shadow-[0_0_2px_white]' />
             </button>
           </Link>
@@ -105,7 +122,15 @@ const Tools = () => {
       <div className='flex items-center mt-4 md:mt-2 gap-2 justify-between'>
         <div className='bg-slate-300/20 rounded-md h-1 w-full' />
         <h4 className='flex items-center justify-center text-slate-300/80 text-center font-bold text-xs md:text-sm'>
-          github <span className='animate-pulse'>/</span> Pedrvisk
+          github{' '}
+          <span
+            className={
+              prefersReducedMotion ? 'text-slate-300/60' : 'animate-pulse'
+            }
+          >
+            /
+          </span>{' '}
+          Pedrvisk
         </h4>
         <div className='bg-slate-300/20 rounded-md h-1 w-full' />
       </div>

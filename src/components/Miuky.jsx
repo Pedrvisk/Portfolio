@@ -2,15 +2,21 @@ import { LanguageTransition } from '@/partials/PageWithTransition';
 import { RiRocket2Line, RiMoreFill } from 'react-icons/ri';
 import { TbDeviceGamepad2, TbBook } from 'react-icons/tb';
 import { useTranslation } from 'next-i18next';
+import { useReducedMotion } from 'framer-motion';
 import { BsCheck } from 'react-icons/bs';
 import Link from 'next/link';
 import Image from 'next/image';
 
 const Miuky = () => {
+  const prefersReducedMotion = useReducedMotion();
   const { t } = useTranslation();
 
   return (
-    <div className='group p-2 md:p-5 col-span-12 md:col-span-6 bg-[#191919]/20 border-[0.5px] border-gray-900/20 backdrop-saturate-150 rounded-md backdrop-blur'>
+    <div
+      className={`p-2 md:p-5 col-span-12 md:col-span-6 bg-[#191919]/20 border-[0.5px] border-gray-900/20 rounded-md ${
+        prefersReducedMotion ? '' : 'backdrop-blur backdrop-saturate-150'
+      }`}
+    >
       <h2 className='flex items-center justify-between text-slate-300 text-center font-bold sm:text-xl md:text-left'>
         <div className='p-2 text-[10px] badge font-black text-slate-300 gap-1 bg-slate-300/20 rounded-md'>
           <BsCheck className='w-4 h-4 fill-slate-300' />
@@ -20,7 +26,9 @@ const Miuky = () => {
           href='https://miuky.xyz'
           target='_blank'
           rel='noopener noreferrer'
-          className='hover:text-slate-300/60 transition-colors'
+          className={`hover:text-slate-300/60 ${
+            prefersReducedMotion ? '' : 'transition-colors'
+          }`}
         >
           Miuky - Discord Bot
         </Link>

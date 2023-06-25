@@ -2,29 +2,41 @@ import { formatDuration, intervalToDuration } from 'date-fns';
 import { LanguageTransition } from '@/partials/PageWithTransition';
 import { MdOutlineDataThresholding } from 'react-icons/md';
 import { useTranslation } from 'next-i18next';
+import { useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 
 import pt from 'date-fns/locale/pt-BR';
 import en from 'date-fns/locale/en-US';
 
 const Metrics = ({ data }) => {
+  const prefersReducedMotion = useReducedMotion();
   const { t, i18n } = useTranslation();
 
   return (
-    <div className='p-2 md:p-5 col-span-12 bg-[#191919]/20 border-[0.5px] border-gray-900/20 backdrop-saturate-150 md:col-span-12 rounded-md backdrop-blur'>
+    <div
+      className={`p-2 md:p-5 col-span-12 bg-[#191919]/20 border-[0.5px] border-gray-900/20 md:col-span-12 rounded-md ${
+        prefersReducedMotion ? '' : 'backdrop-saturate-150 backdrop-blur'
+      }`}
+    >
       <h2 className='flex items-center justify-between text-slate-300 mb-2 md:mb-4 text-center font-bold sm:text-xl md:text-left'>
         <MdOutlineDataThresholding
-          className={`w-6 h-6 fill-slate-300 ${data ? '' : 'animate-pulse'}`}
+          className={`w-6 h-6 ${
+            data
+              ? ''
+              : prefersReducedMotion
+              ? 'fill-slate-300/60'
+              : 'fill-slate-300 animate-pulse'
+          }`}
         />
         <Link
           href='/wakapi'
           target='_blank'
           rel='noopener noreferrer'
-          className='hover:text-slate-300/60 transition-colors'
+          className={`hover:text-slate-300/60 ${
+            prefersReducedMotion ? '' : 'transition-colors'
+          }`}
         >
-          <LanguageTransition>
-            {t('project.title2')}
-          </LanguageTransition>
+          <LanguageTransition>{t('project.title2')}</LanguageTransition>
         </Link>
       </h2>
       <div>

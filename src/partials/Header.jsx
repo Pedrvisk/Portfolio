@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -20,6 +20,7 @@ import { Logo } from '@/assets/Logo';
 import { Language } from '@/assets/Language';
 
 export const Header = ({ user }) => {
+  const prefersReducedMotion = useReducedMotion();
   const { t, i18n } = useTranslation();
   const [time, setTime] = useState('');
   const [weather, setWeather] = useState();
@@ -53,7 +54,11 @@ export const Header = ({ user }) => {
 
   return (
     <header className='grid grid-cols-12 gap-2 md:gap-6'>
-      <div className='w-auto h-auto col-span-12 bg-[#191919]/20 border-[0.5px] border-gray-900/20 backdrop-saturate-150 md:col-span-9 md:h-44 rounded-md backdrop-blur flex grid-cols-1 flex-col justify-evenly'>
+      <div
+        className={`w-auto h-auto col-span-12 bg-[#191919]/20 border-[0.5px] border-gray-900/20 md:col-span-9 md:h-44 rounded-md flex grid-cols-1 flex-col justify-evenly ${
+          prefersReducedMotion ? '' : 'backdrop-saturate-150 backdrop-blur'
+        }`}
+      >
         <div className='p-5 h-full w-full'>
           <div className='flex items-center text-center md:text-start flex-col md:flex-row gap-6 w-full'>
             <Image
@@ -78,7 +83,11 @@ export const Header = ({ user }) => {
                 target='_blank'
                 className='flex items-center gap-2 justify-center md:justify-start group'
               >
-                <h1 className='font-bold text-lg md:text-xl text-white drop-shadow-[0px_0px_2.5px_white] group-hover:text-white/60 transition-all'>
+                <h1
+                  className={`font-bold text-lg md:text-xl text-white drop-shadow-[0px_0px_2.5px_white] group-hover:text-white/60 ${
+                    prefersReducedMotion ? '' : 'transition-all'
+                  }`}
+                >
                   {user?.discord_user
                     ? `${user.discord_user?.global_name}`
                     : 'Pedrovisk'}
@@ -93,13 +102,17 @@ export const Header = ({ user }) => {
           </div>
         </div>
         <div className='relative flex text-center justify-around'>
-          <motion.div
-            key={router.asPath}
-            initial={{ opacity: 0, width: 0 }}
-            animate={{ opacity: 1, width: '100%' }}
-            transition={{ duration: 0.8 }}
-            className='bg-slate-300/5 absolute h-[1px] left-0 transition-all'
-          />
+          {prefersReducedMotion ? (
+            <div className='bg-slate-300/5 absolute h-[1px] left-0 right-0' />
+          ) : (
+            <motion.div
+              key={router.asPath}
+              initial={{ opacity: 0, width: 0 }}
+              animate={{ opacity: 1, width: '100%' }}
+              transition={{ duration: 0.8 }}
+              className='bg-slate-300/5 absolute h-[1px] left-0 transition-all'
+            />
+          )}
           {[
             {
               label: t('header.nav.link.0'),
@@ -117,7 +130,8 @@ export const Header = ({ user }) => {
             <Link
               key={index}
               href={value.href}
-              className={`py-3 px-4 w-full h-full text-slate-300 font-semibold text-sm hover:text-slate-300/60 transition-all
+              className={`py-3 px-4 w-full h-full text-slate-300 font-semibold text-sm hover:text-slate-300/60
+              ${prefersReducedMotion ? '' : 'transition-all'}
               ${
                 router.pathname === value.href
                   ? ' pointer-events-none text-slate-300/60'
@@ -135,7 +149,13 @@ export const Header = ({ user }) => {
             <div className='flex items-center justify-evenly w-full'>
               <div className='font-bold text-lg w-12'>
                 {time.slice(0, 2)}
-                <span className='animate-pulse'>:</span>
+                <span
+                  className={
+                    prefersReducedMotion ? 'text-slate-300/60' : 'animate-pulse'
+                  }
+                >
+                  :
+                </span>
                 <span className='relative'>
                   {time.slice(3, 5)}
                   <span className='absolute left-[80%] bottom-[40%] opacity-[0.5] text-[8px]'>
@@ -154,7 +174,11 @@ export const Header = ({ user }) => {
             <div className='dropdown dropdown-end'>
               <label
                 tabIndex={0}
-                className='backdrop-blur backdrop-saturate-150 indicator btn bg-[#191919]/90 transitions-colors hover:bg-white/10 shadow-inner border-none rounded-r-[4px] rounded-l-none'
+                className={`indicator btn bg-[#191919]/90 hover:bg-white/10 border-none rounded-r-[4px] rounded-l-none ${
+                  prefersReducedMotion
+                    ? 'transition-none no-animation'
+                    : 'shadow-inner backdrop-blur backdrop-saturate-150 transition-colors'
+                }`}
               >
                 <span className='indicator-item indicator-middle indicator-start badge bg-transparent border-none'>
                   <LanguageTransition>
@@ -165,7 +189,11 @@ export const Header = ({ user }) => {
               </label>
               <div
                 tabIndex={0}
-                className='dropdown-content menu shadow p-0 bg-[#191919]/50 border-[0.5px] mt-1 border-white/10 backdrop-saturate-150 backdrop-blur rounded-md w-52 z-[1000]'
+                className={`dropdown-content menu shadow p-0 border-[0.5px] mt-1 border-white/10 rounded-md w-52 z-[1000] ${
+                  prefersReducedMotion
+                    ? 'no-animation transition-none bg-[#191919]/80'
+                    : 'backdrop-saturate-150 backdrop-blur bg-[#191919]/50'
+                }`}
               >
                 {Languages.map((value, index, arr) => (
                   <button
@@ -188,7 +216,13 @@ export const Header = ({ user }) => {
             </div>
           </div>
         </div>
-        <div className='col-span-12 md:col-span-3 flex grid-cols-1 flex-col justify-between h-full bg-[#191919]/20 border-[0.5px] border-gray-900/20 backdrop-saturate-150 rounded-md backdrop-blur'>
+        <div
+          className={`relative col-span-12 md:col-span-3 flex grid-cols-1 flex-col justify-between h-full bg-[#191919]/20 border-[0.5px] border-gray-900/20 rounded-md ${
+            prefersReducedMotion
+              ? 'opacity-90'
+              : 'backdrop-blur backdrop-saturate-150'
+          }`}
+        >
           <div className='w-full h-32 md:h-full rounded-md'>
             <Image
               quality={100}
@@ -210,7 +244,7 @@ export const Header = ({ user }) => {
               </div>
             ) : (
               <div className='h-full text-end text-[9px] text-white/50 bg-[#191919]/40 rounded-md border-gray-900/20 border-[0.5px] p-1.5'>
-                <span className='animate-pulse'>
+                <span className={prefersReducedMotion ? '' : 'animate-pulse'}>
                   <LanguageTransition>{t('loading')}</LanguageTransition>
                 </span>
               </div>
