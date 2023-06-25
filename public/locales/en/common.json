@@ -39,5 +39,10 @@
     "links": {
       "description": ["Join the Discord", "My Projects", "support@pedrovisk.ml"]
     }
+  },
+  "error": {
+    "back": "Let's go!",
+    "client": "Oops, an error occurred on page, press the button to resume.",
+    "server": "Oops, an error occurred on server, press the button to resume."
   }
 }

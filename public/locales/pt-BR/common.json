@@ -44,5 +44,10 @@
         "support@pedrovisk.ml"
       ]
     }
+  },
+  "error": {
+    "back": "Vamos lá!",
+    "client": "Oops, ocorreu um erro na página, aperte o botão para retomar.",
+    "server": "Oops, ocorreu um erro no servidor, aperte o botão para retomar."
   }
 }

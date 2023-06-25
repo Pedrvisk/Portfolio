@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { IoArrowBack } from 'react-icons/io5';
 import { LanguageTransition } from '@/partials/PageWithTransition';
 
-const ErrorClient = () => {
+const ErrorServer = () => {
   const prefersReducedMotion = useReducedMotion();
   const { t } = useTranslation();
   const router = useRouter();
@@ -16,9 +16,9 @@ const ErrorClient = () => {
         prefersReducedMotion ? '' : 'backdrop-blur backdrop-saturate-150'
       }`}
     >
-      <h1 className='text-6xl font-bold text-red-500 leading-tight'>404</h1>
+      <h1 className='text-6xl font-bold text-red-500 leading-tight'>500</h1>
       <p className='text-medium font-medium leading-tight text-slate-300/80'>
-        <LanguageTransition>{t('error.client')}</LanguageTransition>
+        <LanguageTransition>{t('error.server')}</LanguageTransition>
       </p>
       <button
         className={`btn w-40 mt-4 text-slate-300/80 border-none bg-slate-300/5 flex items-center justify-center gap-2 hover:bg-white/5 ${
@@ -43,4 +43,4 @@ export async function getStaticProps({ locale }) {
   };
 }
 
-export default ErrorClient;
+export default ErrorServer;
