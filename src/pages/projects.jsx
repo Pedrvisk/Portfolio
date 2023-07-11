@@ -35,25 +35,27 @@ export async function getStaticProps({ locale }) {
       ...(await serverSideTranslations(locale, ['common'])),
       gitProjects: gitProjects?.message
         ? false
-        : gitProjects.map((project) => {
-            return {
-              id: project.id,
-              html_url: project.html_url,
-              language: project.language,
-              description: project.description,
-              owner: {
-                avatar_url: project.owner.avatar_url,
-                login: project.owner.login,
-              },
-              name: project.name,
-              pushed_at: project.pushed_at,
-            };
-          }),
+        : gitProjects
+            .filter((project) => !['Pedrvisk', 'steam-box', 'github-stats-box', 'music-box', 'lang-box'].includes(project.name))
+            .map((project) => {
+              return {
+                id: project.id,
+                html_url: project.html_url,
+                language: project.language,
+                description: project.description,
+                owner: {
+                  avatar_url: project.owner.avatar_url,
+                  login: project.owner.login,
+                },
+                name: project.name,
+                pushed_at: project.pushed_at,
+              };
+            }),
       metrics: wakapiMetrics?.user_id
         ? {
             projects: wakapiMetrics.labels,
             languages: wakapiMetrics.languages.filter(
-              (value) => !['INI', 'unknown'].includes(value.key)
+              (value) => !['INI', 'unknown', 'Properties', 'IDEA_MODULE', 'CLASS', 'Batchfile', 'JAVA', 'GitIgnore file'].includes(value.key)
             ),
           }
         : false,

@@ -109,7 +109,7 @@ const Contact = () => {
             onSubmit={handleSubmit(onSubmit)}
             className='space-y-4'
           >
-            <div className='form-control w-full'>
+            <div className='form-control w-full relative'>
               <label className='label'>
                 <span className='label-text leading-tight text-slate-300/80 font-medium text-sm'>
                   E-mail

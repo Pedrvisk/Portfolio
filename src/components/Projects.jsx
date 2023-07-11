@@ -41,7 +41,6 @@ const Projects = ({ projects }) => {
       <div className='grid grid-cols-1 gap-2 md:grid-cols-2'>
         {projects ? (
           Object.values(projects)
-            .filter((project) => project.name !== 'Pedrvisk')
             .map((value) => (
               <Link
                 href={value.html_url}
