@@ -1,12 +1,12 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import GithubProjects from '@/components/Projects';
-import Metrics from '@/components/Metrics';
+// import Metrics from '@/components/Metrics';
 
 const Projects = ({ gitProjects, metrics }) => {
   return (
     <>
-      <Metrics data={metrics} />
+      {/* <Metrics data={metrics} /> */}
       <GithubProjects projects={gitProjects} />
     </>
   );
@@ -17,18 +17,18 @@ export async function getStaticProps({ locale }) {
     .then(async (res) => await res.json())
     .catch(() => false);
 
-  const wakapiMetrics = await fetch(
-    'https://wak4api.pedrovisk.ml/api/summary?interval=all_time',
-    {
-      headers: {
-        Authorization: `Basic ${Buffer.from(process.env.WAKAPI_KEY).toString(
-          'base64'
-        )}`,
-      },
-    }
-  )
-    .then(async (res) => await res.json())
-    .catch(() => false);
+  // const wakapiMetrics = await fetch(
+  //   'https://wak4api.pedrovisk.dev/api/summary?interval=all_time',
+  //   {
+  //     headers: {
+  //       Authorization: `Basic ${Buffer.from(process.env.WAKAPI_KEY).toString(
+  //         'base64'
+  //       )}`,
+  //     },
+  //   }
+  // )
+  //   .then(async (res) => await res.json())
+  //   .catch(() => false);
 
   return {
     props: {
@@ -36,7 +36,16 @@ export async function getStaticProps({ locale }) {
       gitProjects: gitProjects?.message
         ? false
         : gitProjects
-            .filter((project) => !['Pedrvisk', 'steam-box', 'github-stats-box', 'music-box', 'lang-box'].includes(project.name))
+            .filter(
+              (project) =>
+                ![
+                  'Pedrvisk',
+                  'steam-box',
+                  'github-stats-box',
+                  'music-box',
+                  'lang-box',
+                ].includes(project.name)
+            )
             .map((project) => {
               return {
                 id: project.id,
@@ -51,14 +60,14 @@ export async function getStaticProps({ locale }) {
                 pushed_at: project.pushed_at,
               };
             }),
-      metrics: wakapiMetrics?.user_id
-        ? {
-            projects: wakapiMetrics.labels,
-            languages: wakapiMetrics.languages.filter(
-              (value) => !['INI', 'unknown', 'Properties', 'IDEA_MODULE', 'CLASS', 'Batchfile', 'JAVA', 'GitIgnore file'].includes(value.key)
-            ),
-          }
-        : false,
+      // metrics: wakapiMetrics?.user_id
+      //   ? {
+      //       projects: wakapiMetrics.labels,
+      //       languages: wakapiMetrics.languages.filter(
+      //         (value) => !['INI', 'unknown', 'Properties', 'IDEA_MODULE', 'CLASS', 'Batchfile', 'JAVA', 'GitIgnore file'].includes(value.key)
+      //       ),
+      //     }
+      //   : false,
     },
     revalidate: 1440, // 1 day
   };
