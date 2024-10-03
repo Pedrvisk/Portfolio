@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .grid-start {
+    @apply grid grid-cols-12 gap-2 md:gap-6;
+  }
+
+  .grid-style {
+    @apply bg-nero/20 border-[0.5px] border-nero/20 rounded-md p-5;
+  }
+}
+
+@layer base {
+  #__nuxt {
+    @apply mx-auto max-w-6xl px-2 py-2 md:py-14 sm:px-4 md:px-6;
+  }
+
+  body {
+    @apply h-screen w-screen bg-gradient-to-bl from-black to-nero select-none font-serif text-white;
+  }
+
+  body::before {
+    @apply content-[""] absolute inset-0 bg-black opacity-50 z-[-1];
+  }
+
+  body::after {
+    @apply content-[""] fixed inset-0 bg-[url('/base/bg.webp')] opacity-50 bg-center bg-no-repeat bg-cover z-[-2];
+  }
+}
