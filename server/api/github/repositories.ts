@@ -10,23 +10,25 @@ export interface GithubRepository {
   description: string;
   owner: GithubRepositoryOwner;
   name: string;
-  pushed_at: Date;
+  pushed_at: string;
 }
+
+interface GithubRepositoryResponse extends GithubRepository {}
 
 export default defineEventHandler(
   async (event): Promise<{ data: GithubRepository[] | null }> => {
-    const repositories = await $fetch<GithubRepository[]>(
+    const res = await $fetch<GithubRepositoryResponse[]>(
       "https://api.github.com/users/Pedrvisk/repos"
     ).catch(() => null);
 
-    if (!repositories || repositories.length === 0) {
+    if (!res || res.length === 0) {
       return {
         data: null,
       };
     }
 
     return {
-      data: repositories.map((repository) => ({
+      data: res.map((repository) => ({
         id: repository.id,
         html_url: repository.html_url,
         language: repository.language,

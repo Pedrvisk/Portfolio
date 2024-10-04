@@ -15,6 +15,8 @@ export const useProfile = defineStore("profile", {
       const profile = await $fetch<{ data: GithubProfile }>(
         "/api/github/profile"
       );
+
+      if (!profile) return;
       this.$patch(profile.data);
     },
   },

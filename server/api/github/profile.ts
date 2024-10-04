@@ -8,13 +8,15 @@ export interface GithubProfile {
   following: number;
 }
 
+interface GithubProfileResponse extends GithubProfile {}
+
 export default defineEventHandler(
   async (event): Promise<{ data: GithubProfile | null }> => {
-    const profile = await $fetch<GithubProfile>(
+    const res = await $fetch<GithubProfileResponse>(
       "https://api.github.com/users/Pedrvisk"
     ).catch(() => null);
 
-    if (!profile) {
+    if (!res) {
       return {
         data: null,
       };
@@ -22,13 +24,13 @@ export default defineEventHandler(
 
     return {
       data: {
-        login: profile.login,
-        avatar_url: profile.avatar_url,
-        html_url: profile.html_url,
-        bio: profile.bio,
-        public_repos: profile.public_repos,
-        followers: profile.followers,
-        following: profile.following,
+        login: res.login,
+        avatar_url: res.avatar_url,
+        html_url: res.html_url,
+        bio: res.bio,
+        public_repos: res.public_repos,
+        followers: res.followers,
+        following: res.following,
       },
     };
   }
