@@ -4,7 +4,7 @@
 
 @layer components {
   .grid-start {
-    @apply grid grid-cols-12 gap-2 md:gap-6;
+    @apply grid grid-cols-12 gap-2 md:gap-2;
   }
 
   .grid-style {

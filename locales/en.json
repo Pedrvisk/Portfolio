@@ -1,3 +1,10 @@
 {
-  "title": "English"
+  "description": "Programming is more than a hobby — it's a passion that grows with each line of code.",
+  "time": "Brazil",
+  "spotify": {
+    "not": "Not Listening to Spotify",
+    "listening": "Listening to Spotify",
+    "artist": "by",
+    "album": "on"
+  }
 }

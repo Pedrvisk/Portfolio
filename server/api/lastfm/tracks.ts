@@ -14,15 +14,15 @@ export interface LastFMTrack {
   name: string;
   artist: LastFMTrackArtist;
   url: string;
-  rank: string;
-  playcount: string;
+  rank: number;
+  playcount: number;
   image: string | null;
 }
 
 interface LastFMTrackResponse {
   toptracks: {
     track: (LastFMTrack & {
-      "@attr": { rank: string };
+      "@attr": { rank: number };
       image: LastFMTrackImage[];
     })[];
   };
@@ -47,7 +47,7 @@ async function fetchArtistImages(artist: string): Promise<string[]> {
 export default defineEventHandler(
   async (event): Promise<{ data: LastFMTrack[] | null }> => {
     const res = await $fetch<LastFMTrackResponse>(
-      `https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=Pedrov1sk&api_key=${process.env.LASTFM_API_KEY}&format=json`
+      `https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=Pedrov1sk&limit=3&api_key=${process.env.LASTFM_API_KEY}&format=json`
     ).catch(() => null);
 
     if (!res || !res.toptracks || res.toptracks.track.length === 0) {

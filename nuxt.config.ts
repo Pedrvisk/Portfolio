@@ -1,3 +1,5 @@
+import nuxtHeadConfig from "./nuxt-head.config";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
@@ -5,6 +7,8 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@pinia/nuxt",
     "@virenbar/nuxt-lanyard",
+    "@nuxt/icon",
+    "@vueuse/motion/nuxt",
   ],
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
@@ -16,73 +20,40 @@ export default defineNuxtConfig({
     },
   },
   app: {
-    head: {
-      charset: "utf-8",
-      viewport: "width=device-width, initial-scale=1, shrink-to-fit=no",
-      title: "Pedrovisk",
-      link: [
-        {
-          rel: "apple-touch-icon",
-          sizes: "180x180",
-          href: "/img/apple-touch-icon.png",
-        },
-        {
-          rel: "icon",
-          type: "image/png",
-          sizes: "32x32",
-          href: "/img/favicon-32x32.png",
-        },
-        {
-          rel: "icon",
-          type: "image/png",
-          sizes: "16x16",
-          href: "/img/favicon-16x16.png",
-        },
-        {
-          rel: "manifest",
-          href: "/img/site.webmanifest",
-        },
-      ],
-      meta: [
-        {
-          name: "description",
-          content:
-            "This website was created with the intention of publicizing my projects, my skills and putting my programming skills into practice.",
-        },
-        {
-          name: "author",
-          content: "Pedrovisk",
-        },
-        {
-          name: "publisher",
-          content: "Pedrovisk",
-        },
-        {
-          name: "robots",
-          content: "index, follow",
-        },
-        {
-          name: "keywords",
-          content:
-            "Discord, Bot, DiscordBot, Discord Bot, Miuky, miuky, portfolio, web, web developer, dev, developer",
-        },
-        {
-          name: "msapplication-TileColor",
-          content: "#0000000",
-        },
-        {
-          name: "theme-color",
-          content: "#0000000",
-        },
-      ],
-    },
+    head: nuxtHeadConfig,
+    pageTransition: { name: "page", mode: "out-in" },
   },
   routeRules: {
     "/discord": {
       redirect: "https://discord.com/users/216662585737478144",
     },
+    "/github": {
+      redirect: "https://github.com/Pedrvisk",
+    },
+    "/lastfm": {
+      redirect: "https://www.last.fm/user/Pedrov1sk",
+    },
+    "/steam": {
+      redirect: "https://steamcommunity.com/id/pedroviskrx/",
+    },
+    "/spotify": {
+      redirect: "https://open.spotify.com/user/novoshigod?si=9636b45d17a84ab9",
+    },
   },
   i18n: {
-    vueI18n: "./nuxt-i18n.js",
+    vueI18n: "./nuxt-i18n.config.ts",
+    defaultLocale: "en",
+    locales: [
+      {
+        code: "en",
+        name: "English",
+        icon: "twemoji:flag-united-nations",
+      },
+      {
+        code: "pt-BR",
+        name: "Portugues-Brasil",
+        icon: "twemoji:flag-brazil",
+      },
+    ],
   },
 });
