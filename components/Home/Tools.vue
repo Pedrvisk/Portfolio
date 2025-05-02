@@ -1,10 +1,4 @@
 <script setup lang="ts">
-interface Tool {
-  icon: string;
-  tooltip: string;
-  href: string;
-}
-
 const tools = ref<Tool[]>([
   {
     icon: "devicon:express",
@@ -86,6 +80,16 @@ const tools = ref<Tool[]>([
     tooltip: "Taildwind CSS",
     href: "https://tailwindcss.com/docs/installation",
   },
+  {
+    icon: "devicon:nginx",
+    tooltip: "Nginx",
+    href: "https://nginx.org/",
+  },
+  {
+    icon: "devicon:apache",
+    tooltip: "Apache",
+    href: "https://www.apache.org/",
+  },
 ]);
 </script>
 
@@ -100,12 +104,7 @@ const tools = ref<Tool[]>([
       <h2 class="font-bold sm:text-xl">Github</h2>
     </NuxtLink>
     <div class="grid grid-cols-7 gap-2 md:grid-cols-10">
-      <NuxtLink
-        v-for="(tool, index) in tools"
-        :key="index"
-        :to="tool.href"
-        target="_blank"
-      >
+      <NuxtLink v-for="(tool, index) in tools" :key="index" :to="tool.href" target="_blank">
         <UITooltip :content="tool.tooltip">
           <div
             v-motion-pop-visible

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const time = ref<string>("00:00:00");
 const date = ref<string>(new Date().toLocaleDateString());
+let interval: ReturnType<typeof setInterval> | null = null;
 
 const updateTime = () => {
   const now = new Date();
@@ -11,16 +12,17 @@ const updateTime = () => {
 
 onMounted(() => {
   updateTime();
-  const intervalId = setInterval(updateTime, 1000);
-  onBeforeUnmount(() => clearInterval(intervalId));
+  interval = setInterval(updateTime, 1000);
+});
+
+onBeforeUnmount(() => {
+  if (interval) clearInterval(interval);
 });
 </script>
 
 <template>
   <div class="flex items-center text-center justify-between flex-col h-full">
-    <div
-      class="flex items-center justify-between bg-white/10 w-full rounded-t-[4px]"
-    >
+    <div class="flex items-center justify-between bg-white/10 w-full rounded-t-[4px]">
       <div class="px-4 bg-white/20 h-full flex items-center rounded-tl-[4px]">
         <Icon name="ic:sharp-share-arrival-time" size="20" />
       </div>
@@ -29,9 +31,7 @@ onMounted(() => {
           {{ time.slice(0, 2) }}
           <span class="animate-pulse">:</span>
           {{ time.slice(3, 5) }}
-          <span
-            class="absolute left-[90%] bottom-[60%] text-white/50 text-[10px]"
-          >
+          <span class="absolute left-[90%] bottom-[60%] text-white/50 text-[10px]">
             {{ time.slice(6, 9) }}
           </span>
         </div>

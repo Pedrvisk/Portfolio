@@ -1,6 +1,5 @@
 <script setup lang="ts">
-const { locale, locales } = useI18n();
-const switchLocalePath = useSwitchLocalePath();
+const { locale, locales, setLocale } = useI18n();
 
 const availableLocales = computed(() => {
   return locales.value.filter((i) => i.code !== locale.value);
@@ -11,8 +10,8 @@ const availableLocales = computed(() => {
   <NuxtLink
     v-for="locale in availableLocales"
     :key="locale.code"
-    :to="switchLocalePath(locale.code)"
-    class="group transition-all relative flex items-center justify-center w-full h-full px-2 py-6 rounded-md"
+    @click.prevent.stop="setLocale(locale.code)"
+    class="group transition-all cursor-pointer relative flex items-center justify-center w-full h-full px-2 py-6 rounded-md"
   >
     <Icon
       :name="locale.icon"

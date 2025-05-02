@@ -34,7 +34,7 @@ export default defineNuxtConfig({
       redirect: "https://www.last.fm/user/Pedrov1sk",
     },
     "/steam": {
-      redirect: "https://steamcommunity.com/id/pedroviskrx/",
+      redirect: "https://steamcommunity.com/id/pedroviskrx",
     },
     "/spotify": {
       redirect: "https://open.spotify.com/user/novoshigod?si=9636b45d17a84ab9",

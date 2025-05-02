@@ -1,19 +1,32 @@
-import { type LastFMTrack } from "~/server/api/lastfm/tracks";
+interface TracksState {
+  data: LastFMTrack[];
+  isLoading: boolean;
+}
 
 export const useTracks = defineStore("tracks", {
-  state: (): LastFMTrack[] => [],
+  state: (): TracksState => ({
+    data: [],
+    isLoading: true,
+  }),
   actions: {
-    async fetch() {
-      if (!this.hasTracks()) {
-        const res = await $fetch("/api/lastfm/tracks");
-
-        if (!res || !res?.data) return;
-        this.$patch(res.data);
-        return res.data;
-      }
+    setLoading(value: boolean) {
+      this.isLoading = value;
     },
-    hasTracks() {
-      return this.length >= 3;
+    async fetch(): Promise<boolean> {
+      this.setLoading(true);
+
+      try {
+        const res = await $fetch<LastFMTrack[]>("/api/lastfm/tracks");
+        if (!res) return false;
+
+        this.data = res;
+        return true;
+      } catch (err) {
+        console.error(err);
+        return false;
+      } finally {
+        this.setLoading(false);
+      }
     },
   },
 });

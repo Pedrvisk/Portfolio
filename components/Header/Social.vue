@@ -1,11 +1,4 @@
 <script setup lang="ts">
-interface Social {
-  icon: string;
-  href: string;
-  tooltip: string;
-  color: string;
-}
-
 const socials = ref<Social[]>([
   {
     icon: "ri:discord-fill",

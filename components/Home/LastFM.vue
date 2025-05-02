@@ -1,11 +1,5 @@
 <script setup lang="ts">
-const nuxtApp = useNuxtApp();
 const tracks = useTracks();
-const { data, status } = await useAsyncData("tracks", tracks.fetch, {
-  getCachedData(key) {
-    return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
-  },
-});
 </script>
 
 <template>
@@ -19,13 +13,13 @@ const { data, status } = await useAsyncData("tracks", tracks.fetch, {
       <Icon name="foundation:social-lastfm" size="30" />
     </NuxtLink>
     <div
-      v-if="data && status === 'success'"
+      v-if="!tracks.isLoading && tracks.data?.length > 0"
       class="flex flex-col items-center justify-between gap-1"
     >
       <NuxtLink
+        v-for="(track, index) in tracks.data"
+        :duration="150 * index + 1"
         v-motion-pop-visible
-        :duration="300 * index + 1"
-        v-for="(track, index) in data"
         :key="track?.name"
         :href="track?.url"
         target="_blank"
@@ -34,24 +28,17 @@ const { data, status } = await useAsyncData("tracks", tracks.fetch, {
         <div
           class="w-full h-full bg-white/5 pl-2 rounded-md flex justify-between hover:scale-[1.01] hover:bg-white/10 transition-all"
         >
-          <div
-            class="flex items-center justify-center gap-2 font-medium py-1.5"
-          >
+          <div class="flex items-center justify-center gap-2 font-medium py-1.5">
             <img
+              class="w-7 h-7 rounded-md drop-shadow-[0_0_2px_#ef4444]"
               v-if="track?.image"
               :src="track?.image"
-              class="w-7 h-7 rounded-md drop-shadow-[0_0_2px_#ef4444]"
             />
             <h3 class="text-xs md:text-sm capitalize truncate text-white">
               {{ track?.name }}
             </h3>
-            <span
-              class="text-red-500 text-xs md:text-sm drop-shadow-[0_0_2px_#ef4444]"
-              >-</span
-            >
-            <span class="text-xs md:text-sm truncate text-white/50">{{
-              track?.artist?.name
-            }}</span>
+            <span class="text-red-500 text-xs md:text-sm drop-shadow-[0_0_2px_#ef4444]">-</span>
+            <span class="text-xs md:text-sm truncate text-white/50">{{ track?.artist?.name }}</span>
           </div>
           <div class="flex items-center justify-center gap-2">
             <div

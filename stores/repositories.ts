@@ -1,14 +1,32 @@
-import { type GithubRepository } from "~/server/api/github/repositories";
+interface RepositoriesState {
+  data: GithubRepository[];
+  isLoading: boolean;
+}
 
 export const useRepositories = defineStore("repositories", {
-  state: (): GithubRepository[] => [],
+  state: (): RepositoriesState => ({
+    data: [],
+    isLoading: true,
+  }),
   actions: {
-    async fetch(): Promise<GithubRepository[] | null> {
-      const res = await $fetch("/api/github/repositories");
+    setLoading(value: boolean) {
+      this.isLoading = value;
+    },
+    async fetch(): Promise<boolean> {
+      this.setLoading(true);
 
-      if (!res || !res?.data) return null;
-      this.$patch(res.data);
-      return res.data;
+      try {
+        const res = await $fetch<GithubRepository[]>("/api/github/repositories");
+        if (!res) return false;
+
+        this.data = res;
+        return true;
+      } catch (err) {
+        console.error(err);
+        return false;
+      } finally {
+        this.setLoading(false);
+      }
     },
   },
 });

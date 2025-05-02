@@ -16,7 +16,7 @@ function getMinuteAndSeconds(date: Date | number): string {
 }
 
 watch(
-  () => DiscordUser.value?.spotify,
+  () => DiscordUser?.value?.spotify,
   (newSpotify) => {
     if (
       newSpotify &&
@@ -36,8 +36,7 @@ watch(
         elapsed.value = new Date(Date.now() - startedTimestamp.value);
         progress.value =
           100 -
-          (100 * (endTimestamp.value - Date.now())) /
-            (endTimestamp.value - startedTimestamp.value);
+          (100 * (endTimestamp.value - Date.now())) / (endTimestamp.value - startedTimestamp.value);
       }, 1000);
     } else if (!newSpotify) {
       if (interval) clearInterval(interval);
@@ -79,9 +78,7 @@ onBeforeUnmount(() => {
             class="col-span-3 drop-shadow-[0_0_2px_#ef4444] h-16 w-16 justify-self-start rounded-md md:col-span-2 md:h-20 md:w-20"
           />
           <div class="md:ml-2 col-span-9 flex flex-col justify-center">
-            <h2
-              class="truncate text-base md:text-lg font-semibold leading-tight text-white"
-            >
+            <h2 class="truncate text-base md:text-lg font-semibold leading-tight text-white">
               {{ DiscordUser.spotify.song }}
             </h2>
             <h4 class="truncate text-xs leading-tight text-white/80">
@@ -95,9 +92,7 @@ onBeforeUnmount(() => {
           </div>
         </template>
         <template v-else>
-          <div
-            class="col-span-3 bg-white/10 h-16 w-16 rounded-md md:col-span-2 md:h-20 md:w-20"
-          />
+          <div class="col-span-3 bg-white/10 h-16 w-16 rounded-md md:col-span-2 md:h-20 md:w-20" />
           <div class="md:ml-2 col-span-9 gap-2 flex flex-col justify-center">
             <div class="h-4 w-52 bg-white/10 rounded-[5px]" />
             <div class="h-3 w-12 bg-white/10 rounded-[4px]" />
@@ -124,21 +119,15 @@ onBeforeUnmount(() => {
             }"
           >
             <span>{{
-              elapsed && DiscordUser?.spotify
-                ? getMinuteAndSeconds(elapsed)
-                : "00:00"
+              elapsed && DiscordUser?.spotify ? getMinuteAndSeconds(elapsed) : "00:00"
             }}</span>
-            <span>{{
-              duration ? getMinuteAndSeconds(duration) : "00:00"
-            }}</span>
+            <span>{{ duration ? getMinuteAndSeconds(duration) : "00:00" }}</span>
           </div>
         </template>
         <template v-else>
           <div class="w-full">
             <div class="h-2 w-full rounded-md bg-white/10" />
-            <div
-              class="mt-1.5 text-white/25 flex items-center justify-between px-0.5 text-xs"
-            >
+            <div class="mt-1.5 text-white/25 flex items-center justify-between px-0.5 text-xs">
               <span>00:00</span>
               <span>00:00</span>
             </div>

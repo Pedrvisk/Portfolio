@@ -26,6 +26,6 @@
   }
 
   body::after {
-    @apply content-[""] fixed inset-0 bg-[url('/base/bg.webp')] opacity-50 bg-center bg-no-repeat bg-cover z-[-2];
+    @apply content-[""] fixed inset-0 bg-[url('/base/background.webp')] opacity-50 bg-center bg-no-repeat bg-cover z-[-2];
   }
 }

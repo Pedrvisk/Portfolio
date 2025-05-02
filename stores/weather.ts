@@ -1,18 +1,36 @@
-import type { Weather } from "~/server/api/weather/temperature";
+interface WeatherState {
+  data: Weather;
+  isLoading: boolean;
+}
 
 export const useWeather = defineStore("weather", {
-  state: (): Weather => ({
-    temperature: "",
-    humidity: "",
-    last_updated: "",
+  state: (): WeatherState => ({
+    data: {
+      temperature: null,
+      humidity: null,
+      last_updated: null,
+    },
+    isLoading: true,
   }),
   actions: {
-    async fetch() {
-      const res = await $fetch("/api/weather/temperature");
+    setLoading(value: boolean) {
+      this.isLoading = value;
+    },
+    async fetch(): Promise<boolean> {
+      this.setLoading(true);
 
-      if (!res || !res?.data) return;
-      this.$patch(res.data);
-      return res.data;
+      try {
+        const res = await $fetch<Weather>("/api/weather/temperature");
+        if (!res) return false;
+
+        this.data = res;
+        return true;
+      } catch (err) {
+        console.error(err);
+        return false;
+      } finally {
+        this.setLoading(false);
+      }
     },
   },
 });
