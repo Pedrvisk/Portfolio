@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next/pages';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { motion, useReducedMotion } from 'framer-motion';

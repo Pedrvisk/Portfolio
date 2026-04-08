@@ -1,7 +1,7 @@
 import { formatDuration, intervalToDuration } from 'date-fns';
 import { LanguageTransition } from '@/partials/PageWithTransition';
 import { MdOutlineDataThresholding } from 'react-icons/md';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next/pages';
 import { useReducedMotion } from 'framer-motion';
 import Link from 'next/link';
 

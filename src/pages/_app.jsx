@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import { useEffect } from 'react';
 import { Inter } from 'next/font/google';
-import { appWithTranslation } from 'next-i18next';
+import { appWithTranslation } from 'next-i18next/pages';
 import { useLanyardWS } from 'use-lanyard';
 
 const inter = Inter({

@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next/pages';
 import { useEffect, useState } from 'react';
 import { useReducedMotion } from 'framer-motion';
 import Image from 'next/image';
@@ -24,10 +24,16 @@ const Spotify = ({ user }) => {
   const duration = user?.spotify?.timestamps
     ? new Date(user.spotify.timestamps.end - user.spotify.timestamps.start)
     : undefined;
-
   const progress =
-    100 -
-    (100 * (endTimestamp - Date.now())) / (endTimestamp - startedTimestamp);
+    user?.spotify && elapsed && endTimestamp > startedTimestamp
+      ? Math.min(
+          100,
+          Math.max(
+            0,
+            (100 * elapsed.getTime()) / (endTimestamp - startedTimestamp)
+          )
+        )
+      : 100;
 
   useEffect(() => {
     if (user?.spotify) {

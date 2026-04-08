@@ -1,4 +1,4 @@
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { serverSideTranslations } from 'next-i18next/pages/serverSideTranslations';
 
 import Spotify from '@/components/Spotify';
 import Tools from '@/components/Tools';
@@ -24,27 +24,29 @@ export async function getStaticProps({ locale }) {
     }
   )
     .then(async (res) => await res.json())
-    .catch(() => false);
+    .catch(() => null);
+
+  const lastFmTracks = getLastfmTopTracks?.toptracks?.track
+    ?.filter((track, index) => index < 3)
+    .map((track) => {
+      return {
+        name: track.name,
+        artist: {
+          url: track.artist.url,
+          name: track.artist.name,
+        },
+        url: track.url,
+        '@attr': {
+          rank: track['@attr'].rank,
+        },
+        playcount: track.playcount,
+      };
+    }) || false;
 
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
-      lastFmTracks: getLastfmTopTracks.toptracks.track
-        .filter((track, index) => index < 3)
-        .map((track) => {
-          return {
-            name: track.name,
-            artist: {
-              url: track.artist.url,
-              name: track.artist.name,
-            },
-            url: track.url,
-            '@attr': {
-              rank: track['@attr'].rank,
-            },
-            playcount: track.playcount,
-          };
-        }),
+      lastFmTracks,
     },
     revalidate: 10080, // 7 days
   };

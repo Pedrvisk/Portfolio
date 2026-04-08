@@ -1,7 +1,7 @@
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { serverSideTranslations } from 'next-i18next/pages/serverSideTranslations';
 import { LanguageTransition } from '@/partials/PageWithTransition';
 import { IoIosContact } from 'react-icons/io';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next/pages';
 import { SiDiscord, SiGithub, SiMinutemailer } from 'react-icons/si';
 import { MdOutlineMail } from 'react-icons/md';
 import { BiMessageDetail } from 'react-icons/bi';
@@ -14,8 +14,8 @@ import Link from 'next/link';
 const Contact = () => {
   const prefersReducedMotion = useReducedMotion();
   const { t } = useTranslation();
-  const [formLoading, setFormLoading] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
+  const formLoading = timeLeft > 0;
 
   const {
     register,
@@ -24,7 +24,6 @@ const Contact = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    setFormLoading(true);
     setTimeLeft(60);
 
     await fetch('/api/contact', {
@@ -34,7 +33,7 @@ const Contact = () => {
       },
       body: JSON.stringify(data),
     }).then((res) => {
-      if (res.status !== 200) setFormLoading(false);
+      if (res.status !== 200) setTimeLeft(0);
     });
   };
 
@@ -42,10 +41,9 @@ const Contact = () => {
     if (!timeLeft) return;
 
     const delayInterval = setInterval(() => {
-      setTimeLeft((prevState) => prevState - 1);
+      setTimeLeft((prevState) => Math.max(prevState - 1, 0));
     }, 1000);
 
-    if (timeLeft === 1) setFormLoading(false);
     return () => clearInterval(delayInterval);
   }, [timeLeft]);
 

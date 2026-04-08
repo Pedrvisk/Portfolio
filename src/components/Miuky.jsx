@@ -1,7 +1,7 @@
 import { LanguageTransition } from '@/partials/PageWithTransition';
 import { RiRocket2Line, RiMoreFill } from 'react-icons/ri';
 import { TbDeviceGamepad2, TbBook } from 'react-icons/tb';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next/pages';
 import { useReducedMotion } from 'framer-motion';
 import { BsCheck } from 'react-icons/bs';
 import Link from 'next/link';
