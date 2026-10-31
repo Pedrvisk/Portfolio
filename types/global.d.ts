@@ -47,10 +47,14 @@ declare global {
 
   interface LastFMTrackResponse {
     toptracks: {
-      track: (LastFMTrack & {
+      track: {
+        name: string;
+        artist: LastFMTrackArtist;
+        url: string;
+        playcount: number;
         "@attr": { rank: number };
         image: LastFMTrackImage[];
-      })[];
+      }[];
     };
   }
 

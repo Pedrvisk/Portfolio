@@ -1,10 +1,21 @@
 {
-  "description": "Atualmente trabalhando como DevOps, com foco em desenvolvimento e automação.",
+  "description": "Foco em desenvolvimento de software, automação, infraestrutura e Engenharia Reversa.",
   "time": "Brasil",
   "spotify": {
     "not": "Não Ouvindo Spotify",
     "listening": "Ouvindo Spotify",
     "artist": "por",
     "album": "do álbum"
+  },
+  "projects": {
+    "title": "Projetos",
+    "description": "Meus repositórios públicos no GitHub.",
+    "back": "Início",
+    "viewAll": "Ver todos os projetos",
+    "viewOnGithub": "Ver no GitHub",
+    "noDescription": "Este repositório não tem uma descrição.",
+    "loading": "Carregando projetos...",
+    "empty": "Nenhum repositório público encontrado.",
+    "error": "Não foi possível carregar os projetos agora."
   }
 }

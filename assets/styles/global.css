@@ -18,11 +18,11 @@
   }
 
   body {
-    @apply h-screen w-screen bg-gradient-to-bl from-black to-nero select-none font-serif text-white;
+    @apply min-h-screen w-full bg-gradient-to-bl from-black to-nero select-none font-serif text-white;
   }
 
   body::before {
-    @apply content-[""] absolute inset-0 bg-black opacity-50 z-[-1];
+    @apply content-[""] fixed inset-0 bg-black opacity-50 z-[-1];
   }
 
   body::after {

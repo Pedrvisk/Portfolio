@@ -1,10 +1,21 @@
 {
-  "description": "Currently working as a DevOps, focused on development and automation.",
+  "description": "Focused on software development, automation, infrastructure, and reverse engineering.",
   "time": "Brazil",
   "spotify": {
     "not": "Not Listening to Spotify",
     "listening": "Listening to Spotify",
     "artist": "by",
     "album": "on"
+  },
+  "projects": {
+    "title": "Projects",
+    "description": "My public GitHub repositories.",
+    "back": "Home",
+    "viewAll": "View all projects",
+    "viewOnGithub": "View on GitHub",
+    "noDescription": "This repository has no description.",
+    "loading": "Loading projects...",
+    "empty": "No public repositories found.",
+    "error": "Couldn't load the projects right now."
   }
 }
